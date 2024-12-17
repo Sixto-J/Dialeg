@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dialegs</string>
+    <string name="dialog_start_game"> Empieza el juego </string>
+    <string name="start">Start</string>
+    <string name="cancel">Cancel</string>
+    <string name="pick_toppings">Iam the title</string>
+    <string name="ok">OK</string>
+</resources>
