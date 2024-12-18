@@ -1,11 +1,10 @@
 package com.example.dialegs;
 
-import static android.app.PendingIntent.getActivity;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -30,18 +29,53 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        StartGameDialogFragment sgdf = new StartGameDialogFragment();
-        sgdf.show(getSupportFragmentManager(), "GAME_DIALOG");
+        //StartGameDialogFragment sgdf = new StartGameDialogFragment();
+        LoginDialogFragment ldf = new LoginDialogFragment();
+        //sgdf.show(getSupportFragmentManager(), "GAME_DIALOG");
+        ldf.show(getSupportFragmentManager(), "LOGIN_DIALOG");
 
 
     }
 
     public static class StartGameDialogFragment extends DialogFragment {
 
+    }
+
+    public static class LoginDialogFragment extends DialogFragment{
+
+        @Override
+        public Dialog onCreateDialog (Bundle savedInstanceState){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            // Get the layout inflater.
+            LayoutInflater inflater = requireActivity().getLayoutInflater();
+
+            // Inflate and set the layout for the dialog.
+            // Pass null as the parent view because it's going in the dialog layout.
+            builder.setView(inflater.inflate(R.layout.dialog_signin, null))
+                    // Add action buttons
+                    .setPositiveButton(R.string.signin, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Sign in the user.
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            LoginDialogFragment.this.getDialog().cancel();
+                        }
+                    });
+            return builder.create();
+        }
+    }
 
 
 
-        /*@Override
+
+
+/*
+
+
+        @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the Builder class for convenient dialog construction.
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -58,7 +92,11 @@ public class MainActivity extends AppCompatActivity {
                     });
             // Create the AlertDialog object and return it.
             return builder.create();
-        }*/
+
+
+
+---------------------------
+
 
 
         @Override
@@ -125,9 +163,20 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+
+
+
+
+
         }
 
 
-    }
 
-}
+        */
+
+
+        }
+
+
+
+
