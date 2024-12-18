@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        new StartGameDialogFragment().show(getSupportFragmentManager(), "GAME_DIALOG");
-
+        StartGameDialogFragment sgdf = new StartGameDialogFragment();
+        sgdf.show(getSupportFragmentManager(), "GAME_DIALOG");
 
 
     }
@@ -79,17 +79,24 @@ public class MainActivity extends AppCompatActivity {
                                         // If the user checks the item, add it to the selected
                                         // items.
                                         selectedItems.add(which);
-                                        Log.i("TAG"," AFEGINT, which:"+which+" y el tamany de selecteditems es: "+selectedItems.size());
+                                        Log.i("TAG", " AFEGINT, which:" + which + " y el tamany de selecteditems es: " +
+                                                selectedItems.size());
 
+                                        imprimirlista(selectedItems);
                                     } else if (selectedItems.contains(which)) {
                                         // If the item is already in the array, remove it.
-                                        Log.i("TAG","ANTES, which:"+which+" y el tamany de selecteditems es: "+selectedItems.size());
-                                        selectedItems.remove(which);
-                                        Log.i("TAG","DESPUES, which:"+which+" y el tamany de selecteditems es: "+selectedItems.size());
+                                        Log.i("TAG", "ANTES, which:" + which + " y el tamany de selecteditems es: " + selectedItems.size());
+                                        int posicion = selectedItems.indexOf(which);
 
+                                        selectedItems.remove(posicion);
+                                        Log.i("TAG", "DESPUES, which:" + which + " y el tamany de selecteditems es: " + selectedItems.size());
 
+                                        imprimirlista(selectedItems);
                                     }
+
                                 }
+
+
                             })
                     // Set the action buttons
                     .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -111,12 +118,14 @@ public class MainActivity extends AppCompatActivity {
             return builder.create();
         }
 
+        private void imprimirlista(ArrayList selectedI) {
+
+            for (int i = 0; i < selectedI.size(); i++) {
+                Log.i("TAG", "Selected items: " + selectedI.get(i));
+            }
 
 
-
-
-
-
+        }
 
 
     }
